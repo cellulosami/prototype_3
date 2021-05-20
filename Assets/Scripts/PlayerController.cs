@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
+    private Animator playerAnim;
     public float jumpForce;
     public float gravityModifier;
     private bool isOnGround = true;
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
     {
         //define rigidbody
         playerRb = GetComponent<Rigidbody>();
+        playerAnim = GetComponent<Animator>();
         Physics.gravity *= gravityModifier;
     }
 
