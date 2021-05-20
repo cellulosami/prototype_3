@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerControllerX : MonoBehaviour
 {
-    public bool gameOver;
+    public bool gameOver = false;
 
     public float floatForce;
     private float gravityModifier = 1.5f;
@@ -16,11 +16,13 @@ public class PlayerControllerX : MonoBehaviour
     private AudioSource playerAudio;
     public AudioClip moneySound;
     public AudioClip explodeSound;
+    public AudioClip boingSound;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        playerRb = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
         playerAudio = GetComponent<AudioSource>();
 
@@ -60,6 +62,11 @@ public class PlayerControllerX : MonoBehaviour
 
         }
 
+        // if player collides with ground, bounce
+        else if (other.gameObject.CompareTag("Ground") && other.relativeVelocity.y > 0.01f) {
+            playerRb.velocity = new Vector3(other.relativeVelocity.x, other.relativeVelocity.y * 0.7f, other.relativeVelocity.z);
+            playerAudio.PlayOneShot(boingSound, 1.5f);
+        }
     }
 
 }
