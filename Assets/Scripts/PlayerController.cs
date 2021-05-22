@@ -18,6 +18,12 @@ public class PlayerController : MonoBehaviour
     private bool isOnGround = true;
     public bool gameOver = false;
     private float jumpBuffer = 0.3f;
+
+    //start animation variables
+    private float startTime;
+    private float duration = 2.0f;
+    private float minimum = -8.0f;
+    private float maximum = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +32,7 @@ public class PlayerController : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
         Physics.gravity *= gravityModifier;
+        startTime = Time.time;
     }
 
     // Update is called once per frame
@@ -41,6 +48,12 @@ public class PlayerController : MonoBehaviour
             playerAudio.PlayOneShot(jumpSound, 1.0f);
         } else if (Input.GetKeyDown(KeyCode.Space)) {
             jumpBuffer = 0.0f;
+        }
+
+        //entrance animation
+        if ((Time.time - startTime) / duration <= 1) {
+            float t = (Time.time - startTime) / duration;
+            transform.position = new Vector3(Mathf.SmoothStep(minimum, maximum, t), transform.position.y, transform.position.z);
         }
     }
 

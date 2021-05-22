@@ -702,7 +702,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400066, guid: 3afad42cab5a57a4c9f19f8deaaf8689, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.064536214
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 400066, guid: 3afad42cab5a57a4c9f19f8deaaf8689, type: 3}
       propertyPath: m_LocalPosition.y
@@ -899,7 +899,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bda5325afff85840b24afac6e591c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefab: {fileID: 1840155718898681531, guid: caa015762a82d4f4896c6f46f99e4497, type: 3}
+  obstaclePrefabs:
+  - {fileID: 1840155718898681531, guid: caa015762a82d4f4896c6f46f99e4497, type: 3}
+  - {fileID: 8862962069761651995, guid: 12f3e4548312e4c41919816629635ff0, type: 3}
 --- !u!4 &1700027440
 Transform:
   m_ObjectHideFlags: 0

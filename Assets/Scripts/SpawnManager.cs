@@ -6,7 +6,7 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject[] obstaclePrefabs;
     private Vector3 spawnPos = new Vector3(26, 1, 0);
-    private float startDelay = 2;
+    private float startDelay = 3;
     private PlayerController playerControllerScript;
     // Start is called before the first frame update
     void Start()
@@ -19,7 +19,7 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void SpawnObstacle() {
@@ -32,5 +32,6 @@ public class SpawnManager : MonoBehaviour
         //invoke next spawn
         float spawnDelay = Random.Range(0.55f, 1.5f);
         Invoke("SpawnObstacle", spawnDelay);
+
     }
 }
