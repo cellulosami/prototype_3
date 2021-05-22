@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject obstaclePrefab;
+    public GameObject[] obstaclePrefabs;
     private Vector3 spawnPos = new Vector3(26, 1, 0);
     private float startDelay = 2;
-    private float repeatDelay = 2;
     private PlayerController playerControllerScript;
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnObstacle", startDelay, repeatDelay);
+        //invoke first spawn
+        Invoke("SpawnObstacle", startDelay);
         playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
@@ -23,8 +23,14 @@ public class SpawnManager : MonoBehaviour
     }
 
     void SpawnObstacle() {
+        //spawn obstacle
+        int obstacleIndex = Random.Range(0, 2);
         if (playerControllerScript.gameOver == false) {
-            Instantiate(obstaclePrefab, spawnPos, obstaclePrefab.transform.rotation);
+            Instantiate(obstaclePrefabs[obstacleIndex], spawnPos, obstaclePrefabs[obstacleIndex].transform.rotation);
         }
+
+        //invoke next spawn
+        float spawnDelay = Random.Range(0.55f, 1.5f);
+        Invoke("SpawnObstacle", spawnDelay);
     }
 }
